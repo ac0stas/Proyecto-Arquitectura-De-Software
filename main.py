@@ -160,7 +160,6 @@ if __name__ == '__main__':
             }
         ]
     )
-    app.sock.listen(1)
     remove_tablas()
     create_tablas()
     insertar_usuario('admin', 'admin', 0)
