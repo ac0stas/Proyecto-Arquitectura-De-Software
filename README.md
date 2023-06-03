@@ -4,3 +4,7 @@ con arquitectura SOA
 base de datos SQLite
 
 
+## Servicios
+Gestor de cuentas
+Inventario
+Ventas
