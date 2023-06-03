@@ -36,5 +36,5 @@ if (status == 'OK'):
         client_id = received_message[5:10]
         data = eval(received_message[10:])
         ans = login(data['username'], data['password'])
-        response = utils.str_bus_format(ans, str(client_id)).encode('UTF-8')
+        response = utils.bus_format(ans, str(client_id)).encode('UTF-8')
         sock.send(response)
