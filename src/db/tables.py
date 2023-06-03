@@ -36,4 +36,12 @@ def remove_tablas():
     ''')
     conexion.commit()
     conexion.close()
-    
+
+def insertar_usuario(nombre, clave, tipo):
+    conexion = sqlite3.connect('db.sqlite3')
+    cursor = conexion.cursor()
+    cursor.execute('''
+        INSERT INTO usuarios (Nombre, Clave, Tipo) VALUES (?, ?, ?);
+    ''', (nombre, clave, tipo))
+    conexion.commit()
+    conexion.close()

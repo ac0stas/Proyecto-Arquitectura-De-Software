@@ -2,7 +2,7 @@ import argparse
 import socket
 
 from src.utils import bus_format
-from src.db.tables import create_tablas, remove_tablas
+from src.db.tables import create_tablas, remove_tablas, insertar_usuario
 
 class App:
     def __init__(self, login_service, services=[]) -> None:
@@ -161,4 +161,5 @@ if __name__ == '__main__':
     )
     remove_tablas()
     create_tablas()
+    insertar_usuario('admin', 'admin', 0)
     res = app.show_menu()
