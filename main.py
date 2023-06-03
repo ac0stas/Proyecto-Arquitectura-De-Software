@@ -1,22 +1,23 @@
 import argparse
-import socket
-
+import socket as sk
+import time
 from src.utils import bus_format
 from src.db.tables import create_tablas, remove_tablas, insertar_usuario
 
 class App:
     def __init__(self, login_service, services=[]) -> None:
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.sock = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
         server_address = ('localhost', 5000)
-        self.socket.bind(server_address)
+        self.sock.connect(server_address)
         self.login_service = login_service
         self.services = services
 
     def send_msg(self, msg, name='g7999'):
         req = bus_format(msg, name).encode('utf-8')
         print('sending "%s"' % req)
-        self.socket.send(req) #error
-        return self.socket.recv(1024).decode('utf-8')
+        time.sleep(2)
+        self.sock.sendall(req) #error
+        return self.sock.recv(1024).decode('utf-8')
     
     def login(self):
         inputs = {}
@@ -52,7 +53,7 @@ class App:
                 print("Opcion no valida")
         self.menu(data[-1])
 
-def menu(self, type_id):
+    def menu(self, type_id):
         while True:
             input("Presione enter para continuar")
             print("Bienvenido \n")
@@ -77,7 +78,7 @@ def menu(self, type_id):
                     actual_input = service['inputs'][i]
                     key = actual_input['key']
                     inputs[key] = input(actual_input['desc'])
-                res = self.send_message(inputs, service['id'])
+                res = self.send_msg1(inputs, service['id'])
                 if res[10:12] == 'NK':
                     print('Servicio no disponible')
                     pass
@@ -159,7 +160,8 @@ if __name__ == '__main__':
             }
         ]
     )
+    app.sock.listen(1)
     remove_tablas()
     create_tablas()
     insertar_usuario('admin', 'admin', 0)
-    res = app.login_menu()
+    app.login_menu()

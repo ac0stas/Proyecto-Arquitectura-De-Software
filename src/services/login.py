@@ -18,11 +18,11 @@ def login(nombre, clave):
 
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_address = ('localhost', 5000)
+server_address = ('localhost', 4321)
 sock.connect(server_address)
 
 message = b"00050sinitservi0"
-sock.send(message)
+sock.sendall(message)
 status = sock.recv(4096)[10:12].decode('UTF-8')
 
 print(status)
