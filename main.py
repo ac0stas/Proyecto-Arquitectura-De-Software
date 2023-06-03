@@ -86,6 +86,7 @@ def menu(self, type_id):
             else:
                 print("Opcion no valida")
 
+
 if __name__ == '__main__':
     app = App(
         login_service={
@@ -104,58 +105,71 @@ if __name__ == '__main__':
         },
         services=[
             {
-                'id': 'serv2',
-                'desc': 'Registrar maquinaria',
-                'user_types': [0, 1, 2],
+                'id': 'servi1',
+                'desc': 'Crear producto',
+                # tipos de usuarios: 0: admin, 1: vendedor
+                'user_types': [0],
                 #'function': lambda *_: g_print('maquinaria registrada'),
                 'inputs': [
                     {
-                        'key': 'nombre',
-                        'desc': 'Ingresa el nombre de la maquinaria: ',
+                        'key': 'Nombre',
+                        'desc': 'Ingresa el nombre del producto: ',
                     },
                     {
-                        'key': 'estado',
-                        'desc': 'Ingresa el estado de la maquinaria: ',
+                        'key': 'precio',
+                        'desc': 'Ingresa el precio del producto: ',
                     },
                     {
-                        'key': 'costo',
-                        'desc': 'Ingresa el costo de la maquinaria: '
+                        'key': 'stock',
+                        'desc': 'Ingresa el stock: '
+                    },
+                    {
+                        'key': 'SKU',
+                        'desc': 'Ingresa el código SKU: '
+                    },
+                    {
+                        'key': 'categoria',
+                        'desc': 'Ingresa la categoría del producto: '
+                    }
+                ]
+            },
+            {
+                'id': 'serv2',
+                'desc': 'Buscar producto',
+                'user_types': [0, 1],
+                #'function': display_maquinarias,
+                'inputs': [
+                    {
+                        'key': 'id',
+                        'desc': 'Ingresa el id del producto: '
                     }
                 ]
             },
             {
                 'id': 'serv3',
-                'desc': 'Consultar maquinarias',
-                'user_types': [0, 1, 2],
-                #'function': display_maquinarias,
-                'inputs': [
-                    {
-                        'key': 'id',
-                        'desc': 'Ingresa el id de la maquinaria o vacío para consultar por todas: '
-                    }
-                ]
-            },
-            {
-                'id': 'serv4',
-                'desc': 'Modificar maquinaria',
+                'desc': 'Modificar producto',
                 'user_types': [0, 1, 2],
                 #'function': lambda res: g_print('maquinaria modificada') if eval(res[12:]) > 0 else f_print('maquinaria no encontrada'),
-                'inputs': [
+               'inputs': [
                     {
-                        'key': 'id',
-                        'desc': 'Ingresa el id de la maquinaria: '
+                        'key': 'Nombre',
+                        'desc': 'Ingresa el id del producto: ',
                     },
                     {
-                        'key': 'nombre',
-                        'desc': 'Ingresa el nuevo nombre de la maquinaria: ',
+                        'key': 'precio',
+                        'desc': 'Ingresa el nuevo precio del producto: ',
                     },
                     {
-                        'key': 'estado',
-                        'desc': 'Ingresa el nuevo estado de la maquinaria: ',
+                        'key': 'stock',
+                        'desc': 'Ingresa el nuevo stock: '
                     },
                     {
-                        'key': 'costo',
-                        'desc': 'Ingresa el nuevo costo de la maquinaria: '
+                        'key': 'SKU',
+                        'desc': 'Ingresa el nuevo código SKU: '
+                    },
+                    {
+                        'key': 'categoria',
+                        'desc': 'Ingresa la categoría del producto: '
                     }
                 ]
             }
