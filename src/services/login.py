@@ -7,7 +7,7 @@ def login(rut, password):
     print("Verificacion de usuario")
     con = sqlite3.connect("db.sqlite3")
     cursor = con.cursor()
-    query = f"""SELECT * FROM users WHERE rut = '{rut}' AND password = '{password}' ;"""
+    query = f"""SELECT * FROM usarios WHERE nombre = '{nombre}' AND clave = '{clave}' ;"""
     cursor.execute(query)
     rows = cursor.fetchall()
     con.commit()
@@ -35,6 +35,6 @@ if (status == 'OK'):
         print(received_message)
         client_id = received_message[5:10]
         data = eval(received_message[10:])
-        ans = login(data['username'], data['password'])
+        ans = login(data['Nombre'], data['Clave'])
         response = utils.bus_format(ans, str(client_id)).encode('UTF-8')
         sock.send(response)
