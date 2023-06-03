@@ -13,3 +13,6 @@ Ventas
 ## Base de datos
 SQLite
 
+## Lenguaje
+Python
+
