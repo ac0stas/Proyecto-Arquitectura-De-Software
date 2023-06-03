@@ -8,10 +8,3 @@ base de datos SQLite
 Gestor de cuentas
 Inventario
 Ventas
-
-
-
-Fofi guapo
-
-
-chupalo acosta
