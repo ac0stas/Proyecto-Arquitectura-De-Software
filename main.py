@@ -94,12 +94,12 @@ if __name__ == '__main__':
             'desc': 'Iniciar sesión',
             'inputs': [
                 {
-                    'key': 'username',
-                    'desc': 'Ingresa tu rut: '
+                    'key': 'nombre',
+                    'desc': 'Ingresa tu nombre: '
                 },
                 {
-                    'key': 'password',
-                    'desc': 'Ingresa tu contraseña: '
+                    'key': 'clave',
+                    'desc': 'Ingresa tu clave: '
                 }
             ]
         },
