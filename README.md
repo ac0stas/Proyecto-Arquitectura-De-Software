@@ -1,2 +1,6 @@
 # Proyecto-Arquitectura-De-Software
-Hola
+Gestor de inventario 
+con arquitectura SOA
+base de datos SQLite
+
+
