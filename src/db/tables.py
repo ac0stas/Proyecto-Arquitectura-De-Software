@@ -24,3 +24,16 @@ def create_tablas():
     ''')
     conexion.commit()
     conexion.close()
+
+def remove_tablas():
+    conexion = sqlite3.connect('db.sqlite3')
+    cursor = conexion.cursor()
+    cursor.execute('''
+        DROP TABLE IF EXISTS inventario;
+    ''')
+    cursor.execute('''
+        DROP TABLE IF EXISTS usuarios;
+    ''')
+    conexion.commit()
+    conexion.close()
+    
