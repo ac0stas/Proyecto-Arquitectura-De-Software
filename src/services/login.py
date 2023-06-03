@@ -3,11 +3,10 @@ import utils
 import sqlite3
 
 
-def login(rut, password):
-    print("Verificacion de usuario")
+def login(nombre, clave):
     con = sqlite3.connect("db.sqlite3")
     cursor = con.cursor()
-    query = f"""SELECT * FROM usarios WHERE nombre = '{nombre}' AND clave = '{clave}' ;"""
+    query = f"""SELECT * FROM usarios WHERE Nombre = '{nombre}' AND Clave = '{clave}' ;"""
     cursor.execute(query)
     rows = cursor.fetchall()
     con.commit()
@@ -20,13 +19,12 @@ def login(rut, password):
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = ('localhost', 5000)
-
 sock.connect(server_address)
 
-message = b"00050sinitserv1"
-
+message = b"00050sinitservi0"
 sock.send(message)
 status = sock.recv(4096)[10:12].decode('UTF-8')
+
 print(status)
 if (status == 'OK'):
     print('Servicio login iniciado de forma correcta\n')

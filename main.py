@@ -8,14 +8,14 @@ class App:
     def __init__(self, login_service, services=[]) -> None:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server_address = ('localhost', 5000)
-        print('starting up on %s port %s' % server_address)
         self.socket.bind(server_address)
         self.login_service = login_service
         self.services = services
 
     def send_msg(self, msg, name='g7999'):
         req = bus_format(msg, name).encode('utf-8')
-        self.socket.send(req)
+        print('sending "%s"' % req)
+        self.socket.send(req) #error
         return self.socket.recv(1024).decode('utf-8')
     
     def login(self):
@@ -27,7 +27,7 @@ class App:
         res = self.send_msg(inputs, self.login_service['id'])
         return res
     
-    def show_menu(self):
+    def login_menu(self):
         while True:
             print("Bienvenido \n")
             print("Menu de opciones:\n")
@@ -94,11 +94,11 @@ if __name__ == '__main__':
             'desc': 'Iniciar sesión',
             'inputs': [
                 {
-                    'key': 'nombre',
+                    'key': 'Nombre',
                     'desc': 'Ingresa tu nombre: '
                 },
                 {
-                    'key': 'clave',
+                    'key': 'Clave',
                     'desc': 'Ingresa tu clave: '
                 }
             ]
@@ -162,4 +162,4 @@ if __name__ == '__main__':
     remove_tablas()
     create_tablas()
     insertar_usuario('admin', 'admin', 0)
-    res = app.show_menu()
+    res = app.login_menu()
