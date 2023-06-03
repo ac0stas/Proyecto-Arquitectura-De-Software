@@ -90,7 +90,7 @@ def menu(self, type_id):
 if __name__ == '__main__':
     app = App(
         login_service={
-            'id': 'serv1',
+            'id': 'servi0',
             'desc': 'Iniciar sesión',
             'inputs': [
                 {
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                 'desc': 'Crear producto',
                 # tipos de usuarios: 0: admin, 1: vendedor
                 'user_types': [0],
-                #'function': lambda *_: g_print('maquinaria registrada'),
+                #'function': create_product,
                 'inputs': [
                     {
                         'key': 'Nombre',
@@ -137,7 +137,7 @@ if __name__ == '__main__':
                 'id': 'serv2',
                 'desc': 'Buscar producto',
                 'user_types': [0, 1],
-                #'function': display_maquinarias,
+                #'function': buscar_producto,
                 'inputs': [
                     {
                         'key': 'id',
@@ -147,29 +147,13 @@ if __name__ == '__main__':
             },
             {
                 'id': 'serv3',
-                'desc': 'Modificar producto',
-                'user_types': [0, 1, 2],
-                #'function': lambda res: g_print('maquinaria modificada') if eval(res[12:]) > 0 else f_print('maquinaria no encontrada'),
+                'desc': 'Eliminar producto',
+                'user_types': [0],
+                #'function': eliminar_producto,
                'inputs': [
                     {
                         'key': 'Nombre',
                         'desc': 'Ingresa el id del producto: ',
-                    },
-                    {
-                        'key': 'precio',
-                        'desc': 'Ingresa el nuevo precio del producto: ',
-                    },
-                    {
-                        'key': 'stock',
-                        'desc': 'Ingresa el nuevo stock: '
-                    },
-                    {
-                        'key': 'SKU',
-                        'desc': 'Ingresa el nuevo código SKU: '
-                    },
-                    {
-                        'key': 'categoria',
-                        'desc': 'Ingresa la categoría del producto: '
                     }
                 ]
             }
