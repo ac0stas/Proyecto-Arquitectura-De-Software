@@ -1,16 +1,17 @@
 import sqlite3
 import sys
 import socket
+import os
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = ('localhost', 5000)
 sock.connect(server_address)
 
 
-def create_product(name, price, sku, stock):
-    conn = sqlite3.connect('inventario.db')
+def create_product(Nombre, Precio, Stock, SKU, Categoria):
+    conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
-    c.execute("INSERT INTO Product VALUES (?, ?, ?, ?)", (sku, name, price, stock))
+    c.execute("INSERT INTO inventario VALUES (?, ?, ?,?,?)", (Nombre, Precio, Stock, SKU, Categoria))
     conn.commit()
     conn.close()
 
@@ -25,9 +26,15 @@ try:
         amount_received = 0
         amount_expected = int(sock.recv (5))
         while amount_received < amount_expected:
-            data = data.decode().split()
+            data = sock.recv(amount_expected - amount_received)
+            Nombre = data[0]
+            Precio = data[1]
+            Stock = data[2]
+            SKU = data[3]
+            Categoria= data[4]
+            create_product(Nombre, Precio, Stock, SKU, Categoria)
             print ('received {!r}'.format (data))
-            
+
 finally:
     print ('closing socket')
-    sock.close ()
+    sock.close()

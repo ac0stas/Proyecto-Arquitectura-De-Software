@@ -111,7 +111,7 @@ if __name__ == '__main__':
                 'desc': 'Crear producto',
                 # tipos de usuarios: 0: admin, 1: vendedor
                 'user_types': [0],
-                #'function': create_product,
+                #'function': serv1,
                 'inputs': [
                     {
                         'key': 'Nombre',
