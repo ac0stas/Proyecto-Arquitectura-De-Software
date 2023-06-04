@@ -30,8 +30,6 @@ try:
             delete_product(data.decode("utf-8"))
             print ("Transaction-DEL completed")
             sock.sendall(b"Transaction-DEL completed")
-            break
-        break
             
 finally:
     print ('closing socket')
