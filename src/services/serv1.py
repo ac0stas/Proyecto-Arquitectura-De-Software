@@ -17,7 +17,7 @@ def create_product(Nombre, Precio, Stock, SKU, Categoria):
 
 try:
     # Send data
-    message = b"00050sinitservi1"
+    message = b"00080sinitserv1"
     print ('sending {!r}'.format (message))
     sock.sendall(message)
     while True:
@@ -26,7 +26,8 @@ try:
         amount_received = 0
         amount_expected = int(sock.recv (5))
         while amount_received < amount_expected:
-            data = sock.recv(amount_expected - amount_received)
+            data = sock.recv(amount_received - amount_expected)
+            amount_received+=len(data)
             Nombre = data[0]
             Precio = data[1]
             Stock = data[2]

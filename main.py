@@ -1,7 +1,7 @@
 import argparse
 import socket as sk
 import time
-from src.utils import bus_format
+from src.services.utils import bus_format
 from src.db.tables import create_tablas, remove_tablas, insertar_usuario
 
 class App:
@@ -14,6 +14,7 @@ class App:
 
     def send_msg(self, msg, name='g7999'):
         req = bus_format(msg, name).encode('utf-8')
+        
         print('sending "%s"' % req)
         time.sleep(2)
         self.sock.sendall(req) #error
@@ -37,8 +38,8 @@ class App:
             option = input('Ingrese una opcion: ')
             if option == '1':
                 res = self.login()
-                data = eval(res[13:])
-                if res[11:13] == 'NK':
+                data = eval(res[12:])
+                if res[10:12] == 'NK':
                     print('Servicio no disponible')
                     pass
                 elif data == None:
@@ -77,7 +78,7 @@ class App:
                 for i in range(len(service['inputs'])):
                     actual_input = service['inputs'][i]
                     key = actual_input['key']
-                    inputs[key] = input(actual_input['desc'])
+                    inputs[key] = input(actual_input['desc'])                
                 res = self.send_msg(inputs, service['id'])
                 print(res)
                 if res[10:12] == 'NK':
@@ -154,7 +155,7 @@ if __name__ == '__main__':
                 #'function': eliminar_producto,
                'inputs': [
                     {
-                        'key': 'Nombre',
+                        'key': 'ID',
                         'desc': 'Ingresa el id del producto: ',
                     }
                 ]

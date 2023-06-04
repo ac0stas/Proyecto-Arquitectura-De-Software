@@ -9,9 +9,9 @@ sock.connect(server_address)
 message = b"00050sinitserv2"
 
 def buscar_producto(sku):
-    conn = sqlite3.connect('inventario.db')
+    conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
-    c.execute("SELECT FROM Productos WHERE SKU=?", (sku,))
+    c.execute("SELECT FROM inventario WHERE SKU=?", (sku,))
     conn.commit()
     conn.close()
     return c.fetchall()
