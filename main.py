@@ -18,7 +18,7 @@ class App:
         time.sleep(2)
         self.sock.sendall(req) #error
         return self.sock.recv(1024).decode('utf-8')
-    
+
     def login(self):
         inputs = {}
         for i in range(len(self.login_service['inputs'])):
@@ -27,7 +27,7 @@ class App:
             inputs[key] = input(actual_input['desc'])
         res = self.send_msg(inputs, self.login_service['id'])
         return res
-    
+
     def login_menu(self):
         while True:
             print("Bienvenido \n")
@@ -37,8 +37,8 @@ class App:
             option = input('Ingrese una opcion: ')
             if option == '1':
                 res = self.login()
-                data = eval(res[12:])
-                if res[10:12] == 'NK':
+                data = eval(res[13:])
+                if res[11:13] == 'NK':
                     print('Servicio no disponible')
                     pass
                 elif data == None:
@@ -51,7 +51,7 @@ class App:
                 return
             else:
                 print("Opcion no valida")
-        self.menu(data[-1])
+        self.menu(0)
 
     def menu(self, type_id):
         while True:
@@ -78,8 +78,9 @@ class App:
                     actual_input = service['inputs'][i]
                     key = actual_input['key']
                     inputs[key] = input(actual_input['desc'])
-                res = self.send_msg1(inputs, service['id'])
-                if res[10:12] == 'NK':
+                res = self.send_msg(inputs, service['id'])
+                print(res)
+                if res[11:13] == 'NK':
                     print('Servicio no disponible')
                     pass
                 else:
@@ -160,7 +161,9 @@ if __name__ == '__main__':
             }
         ]
     )
+
     remove_tablas()
     create_tablas()
     insertar_usuario('admin', 'admin', 0)
     app.login_menu()
+                        
