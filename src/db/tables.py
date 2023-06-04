@@ -6,7 +6,7 @@ def create_tablas():
     cursor = conexion.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS inventario (
-            ID INTEGER PRIMARY KEY,
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
             Nombre TEXT NOT NULL,
             Precio REAL NOT NULL,
             Stock INTEGER NOT NULL,
@@ -16,7 +16,7 @@ def create_tablas():
     ''')
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS usuarios (
-            ID INTEGER PRIMARY KEY,
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
             Nombre TEXT NOT NULL,
             Clave REAL NOT NULL,
             Tipo INTEGER NOT NULL
