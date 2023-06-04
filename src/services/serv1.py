@@ -9,9 +9,9 @@ sock.connect(server_address)
 
 
 def create_product(Nombre, Precio, Stock, SKU, Categoria):
-    conn = sqlite3.connect('../db.sqlite3')
+    conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
-    c.execute("INSERT INTO inventario VALUES (?, ?, ?,?,?)", (Nombre, Precio, Stock, SKU, Categoria))
+    c.execute("INSERT INTO inventario (Nombre, Precio, Stock, SKU, Categoria) VALUES (?, ?, ?, ?, ?)", (Nombre, Precio, Stock, SKU, Categoria))
     conn.commit()
     conn.close()
 

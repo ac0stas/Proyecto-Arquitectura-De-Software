@@ -80,7 +80,7 @@ class App:
                     inputs[key] = input(actual_input['desc'])
                 res = self.send_msg(inputs, service['id'])
                 print(res)
-                if res[11:13] == 'NK':
+                if res[10:12] == 'NK':
                     print('Servicio no disponible')
                     pass
                 else:
@@ -92,7 +92,7 @@ class App:
 if __name__ == '__main__':
     app = App(
         login_service={
-            'id': 'servi0',
+            'id': 'serv0',
             'desc': 'Iniciar sesión',
             'inputs': [
                 {
@@ -107,11 +107,11 @@ if __name__ == '__main__':
         },
         services=[
             {
-                'id': 'servi1',
+                'id': 'serv1',
                 'desc': 'Crear producto',
                 # tipos de usuarios: 0: admin, 1: vendedor
                 'user_types': [0],
-                #'function': serv1,
+                'function': 'serv1',
                 'inputs': [
                     {
                         'key': 'Nombre',
@@ -162,8 +162,7 @@ if __name__ == '__main__':
         ]
     )
 
-    remove_tablas()
-    create_tablas()
-    insertar_usuario('admin', 'admin', 0)
+#    remove_tablas()
+#    create_tablas()
+#    insertar_usuario('admin', 'admin', 0)
     app.login_menu()
-                        
