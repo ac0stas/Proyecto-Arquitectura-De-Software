@@ -1,3 +1,5 @@
+
+
 import sqlite3
 import sys
 import socket
@@ -39,3 +41,6 @@ try:
 finally:
     print ('closing socket')
     sock.close()
+
+
+
